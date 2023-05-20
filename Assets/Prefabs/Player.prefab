@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gd: {fileID: 2067775374740974571}
+  life: {fileID: 0}
   rb: {fileID: 1918722468592959592}
   feet: {fileID: 5671255763372589711}
   ground:
@@ -278,7 +279,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
   onKill:
     m_PersistentCalls:
       m_Calls:

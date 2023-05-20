@@ -12,6 +12,8 @@ public class MenuController : MonoBehaviour
     public TMP_FontAsset font_dyslexic;
     public bool use_dyslexic;
     public EventSystem eventSystem;
+    public CanvasScaler canvasScaler;
+    Vector2 canvasScalerSize;
     [System.Serializable]
     public struct SubMenu
     {
@@ -28,6 +30,7 @@ public class MenuController : MonoBehaviour
             subMenus[i].menu.SetActive(false);
         }
         ChangeMenu((int)current);
+        canvasScalerSize = canvasScaler.referenceResolution;
     }
     public void ChangeMenu(int index)
     {
@@ -64,5 +67,15 @@ public class MenuController : MonoBehaviour
                 text.font = font_default;
             }
         }
+    }
+    public void ChangeUIScale(string scaletext)
+    {
+        float scale = 0;
+        if(!float.TryParse(scaletext, out scale))
+        {
+            scale = 1;
+        }
+        scale = Mathf.Clamp(scale, 0.75f, 2f);
+        canvasScaler.referenceResolution = canvasScalerSize * scale;
     }
 }

@@ -9,6 +9,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public GroundDetector gd;
+    public LifeController life;
     public Rigidbody2D rb;
     public Collider2D feet;
     private PhysicsMaterial2D feetMaterial;
@@ -50,10 +51,14 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         gd = GetComponent<GroundDetector>();
+        life = GetComponent<LifeController>();
         rb = GetComponent<Rigidbody2D>();
         current = ground;
         feetMaterial = new PhysicsMaterial2D();
         feet.sharedMaterial = feetMaterial;
+
+        GameManager.scripts.Add(GameManager.SCRIPTS.PlayerMovement, this);
+        GameManager.scripts.Add(GameManager.SCRIPTS.PlayerLifeController, life);
     }
 
     // Update is called once per frame

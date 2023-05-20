@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class LifeController : MonoBehaviour
 {
     public int lifes;
+    [Min(1)]
     public int maxLifes;
     public float invencibleTime;
     public bool invencible;
@@ -34,6 +35,17 @@ public class LifeController : MonoBehaviour
         if(sr == null)
             sr = GetComponent<SpriteRenderer>();
         checkpoint = transform.position;
+    }
+    public void ModLife(int life) 
+    { 
+        lifes = Mathf.Clamp(lifes + life, 0, maxLifes);
+    }
+    public void ModMaxLife(int life)
+    {
+        maxLifes += life;
+        if (maxLifes <= 0) maxLifes = 1;
+        if (life > 0)
+            lifes = maxLifes;
     }
     public void Damage(int damage, float knockback = 0, float pushup = 0, bool ignoreInvencible = false)
     {

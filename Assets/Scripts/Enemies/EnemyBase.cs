@@ -25,8 +25,16 @@ public class EnemyBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gridCam = GameManager.scripts[GameManager.SCRIPTS.GridCamera] as GridCamera;
-        player = GameManager.scripts[GameManager.SCRIPTS.PlayerLifeController] as LifeController;
+        try
+        {
+            gridCam = GameManager.scripts[GameManager.SCRIPTS.GridCamera] as GridCamera;
+            player = GameManager.scripts[GameManager.SCRIPTS.PlayerLifeController] as LifeController;
+        }
+        catch (System.Exception e)
+        {
+
+        }
+        
     }
 
     // Update is called once per frame

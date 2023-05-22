@@ -77,17 +77,31 @@ public class PlayerMovement : MonoBehaviour
         if(horizontal > 0)
         {
             dir = 1;
+            transform.GetChild(0).transform.rotation = new Quaternion(0, 180, 0, 0);
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Mov", true);
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Jump", false);
         }
         if(horizontal < 0)
         {
             dir = -1;
+            transform.GetChild(0).transform.rotation = new Quaternion(0, 0, 0, 0);
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Mov", true);
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Jump", false);
         }
         if (gd.grounded)
         {
             current = MovementSettings.Lerp(current, ground, ground.transitionSpeed * Time.fixedDeltaTime);
+            if(horizontal == 0)
+            {
+                transform.GetChild(0).GetComponent<Animator>().SetBool("Mov", false);
+                transform.GetChild(0).GetComponent<Animator>().SetBool("Jump", false);
+            }
+
         }
         else
         {
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Mov", false);
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Jump", true);
             if (rb.velocity.y < 0)
             {
                 current = MovementSettings.Lerp(current, air_up, ground.transitionSpeed * Time.fixedDeltaTime);

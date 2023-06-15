@@ -47,14 +47,14 @@ public class LifeController : MonoBehaviour
         if (life > 0)
             lifes = maxLifes;
     }
-    public void Damage(int damage, float knockback = 0, float pushup = 0, bool ignoreInvencible = false)
+    public void Damage(int damage, float knockbackMultiply = 0, float knockbackAdd = 0, float pushup = 0, bool ignoreInvencible = false)
     {
         if (invencible && !ignoreInvencible)
             return;
         StartCoroutine(Invencible_Corutine());
         if(rb != null)
         {
-            rb.velocity = new Vector2(rb.velocity.x * -knockback, pushup);
+            rb.velocity = new Vector2(rb.velocity.x * -knockbackMultiply + knockbackAdd, pushup);
         }
         lifes -= damage;
         if (lifes <= 0)
@@ -90,7 +90,7 @@ public class LifeController : MonoBehaviour
                 lifes = maxLifes;
                 break;
             default:
-                Destroy(gameObject);
+                DestroyImmediate(gameObject);
                 break;
         }
         onKill.Invoke();

@@ -8,7 +8,8 @@ public class LifeTaker : MonoBehaviour
     public CollisionEvent2D collisionEvent;
 
     public int damage;
-    public float knockback;
+    public float knockbackMultiply;
+    public float knockbackAdd;
     public float pushup;
     public bool ignoreInvencible;
     public float recover;
@@ -44,7 +45,7 @@ public class LifeTaker : MonoBehaviour
         if(life != null)
         {
             nextHit = Time.time + recover;
-            life.Damage(damage, knockback, pushup, ignoreInvencible);
+            life.Damage(damage, knockbackMultiply, obj.transform.position.x < transform.position.x ? -knockbackAdd : knockbackAdd, pushup, ignoreInvencible);
         }
     }
 }

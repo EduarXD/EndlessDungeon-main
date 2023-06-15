@@ -13,6 +13,7 @@ public class GridCamera : MonoBehaviour
     public CanvasGroup fade;
     public float transitionDuration;
     public AnimationCurve transition = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    public bool transitionStop;
     public bool animating { get; private set; }
     public Vector2 size { get; private set; }
     public Vector2 sizeInv { get; private set; }
@@ -20,18 +21,19 @@ public class GridCamera : MonoBehaviour
     public Vector2 startPos { get; private set; } = Vector2.zero;
     public Vector2 endPos { get; private set; } = Vector2.zero;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        startPos = transform.position;
-        startZ = transform.position.z;
-        endPos = transform.position;
-        size = new Vector2(aspectRatio, 1) * cam.orthographicSize * 2;
-        sizeInv = new Vector2(1 / size.x, 1 / size.y);
+        Reset();
         GameManager.scripts.Add(GameManager.SCRIPTS.GridCamera, this);
     }
     private void OnValidate()
     {
+        Reset();
+    }
+    private void Reset()
+    {
         startPos = transform.position;
+        startZ = transform.position.z;
         endPos = transform.position;
         size = new Vector2(aspectRatio, 1) * cam.orthographicSize * 2;
         sizeInv = new Vector2(1 / size.x, 1 / size.y);
@@ -61,6 +63,8 @@ public class GridCamera : MonoBehaviour
         animating = true;
         transform.position = new Vector3(startPos.x, startPos.y, startZ);
         float count = 0;
+        if (transitionStop)
+            Time.timeScale = 0;
         while (count <= 1)
         {
             float amount = transition.Evaluate(count);
@@ -77,9 +81,10 @@ public class GridCamera : MonoBehaviour
             {
                 transform.position = Vector3.Lerp(new Vector3(startPos.x, startPos.y, startZ), new Vector3(endPos.x, endPos.y, startZ), amount);
             }
-            count += Time.deltaTime * transitionDuration;
+            count += Time.unscaledDeltaTime * transitionDuration;
             yield return null;
         }
+        Time.timeScale = 1;
         startPos = endPos;
         transform.position = new Vector3(startPos.x, startPos.y, startZ);
         fade.alpha = 0;

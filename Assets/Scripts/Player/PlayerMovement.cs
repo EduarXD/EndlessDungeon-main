@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 [RequireComponent(typeof(GroundDetector))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     public int dir = 1;
 
     public float jumpForce;
+    public float jumpTeleport;
     public float jumpRecover;
     private float jumpNext;
 
@@ -64,56 +66,43 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gd.grounded && jumpNext < Time.time && Input.GetButtonDown("Jump"))
-        {
-            rb.AddForce(new Vector2(0, jumpForce));
-            jumpNext = Time.time + jumpRecover;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        float horizontal = Input.GetAxis("Horizontal");
-        if(horizontal > 0)
-        {
-            dir = 1;
-            transform.GetChild(0).transform.rotation = new Quaternion(0, 180, 0, 0);
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Mov", true);
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Jump", false);
-        }
-        if(horizontal < 0)
-        {
-            dir = -1;
-            transform.GetChild(0).transform.rotation = new Quaternion(0, 0, 0, 0);
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Mov", true);
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Jump", false);
-        }
         if (gd.grounded)
         {
-            current = MovementSettings.Lerp(current, ground, ground.transitionSpeed * Time.fixedDeltaTime);
-            if(horizontal == 0)
-            {
-                transform.GetChild(0).GetComponent<Animator>().SetBool("Mov", false);
-                transform.GetChild(0).GetComponent<Animator>().SetBool("Jump", false);
-            }
-
+            current = MovementSettings.Lerp(current, ground, ground.transitionSpeed * Time.deltaTime);
         }
         else
         {
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Mov", false);
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Jump", true);
             if (rb.velocity.y < 0)
             {
-                current = MovementSettings.Lerp(current, air_up, ground.transitionSpeed * Time.fixedDeltaTime);
+                current = MovementSettings.Lerp(current, air_down, ground.transitionSpeed * Time.deltaTime);
             }
             else
             {
-                current = MovementSettings.Lerp(current, air_down, ground.transitionSpeed * Time.fixedDeltaTime);
+                current = MovementSettings.Lerp(current, air_up, ground.transitionSpeed * Time.deltaTime);
             }
         }
 
-        rb.drag = current.drag;
+        if (gd.grounded && jumpNext < Time.time && Input.GetButtonDown("Jump"))
+        {
+            current.drag = air_up.drag;
+            transform.position += Vector3.up * jumpTeleport;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpNext = Time.time + jumpRecover;
+        }
+    }
+    private void FixedUpdate()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        if (horizontal > 0)
+        {
+            dir = 1;
+        }
+        if (horizontal < 0)
+        {
+            dir = -1;
+        }
         rb.AddForce(new Vector2(horizontal * current.speed * Time.fixedDeltaTime, 0));
+        rb.drag = current.drag;
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -current.speedMax, current.speedMax), rb.velocity.y);
         feetMaterial.friction = current.friction;
     }

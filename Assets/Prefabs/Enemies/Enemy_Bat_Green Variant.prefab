@@ -8,9 +8,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1556974387892208408, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_Target.x
+      value: -6.328038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556974387892208408, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_Target.y
+      value: 3.8018918
+      objectReference: {fileID: 0}
     - target: {fileID: 2625689322237606635, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2625689322237606635, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52,6 +60,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2757053476405429905, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.977565
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757053476405429905, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.21063419
+      objectReference: {fileID: 0}
+    - target: {fileID: 3466639026564238563, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0000016391277
+      objectReference: {fileID: 0}
+    - target: {fileID: 3643229437135704690, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_InstanceId
+      value: -132022
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013499306804247680, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: gradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013499306804247680, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: gradient.key0.r
+      value: 0.50324774
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013499306804247680, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: gradient.key1.b
+      value: 0.22057246
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013499306804247680, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: gradient.key1.g
+      value: 0.5019608
+      objectReference: {fileID: 0}
     - target: {fileID: 4067793170558984053, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
       propertyPath: m_Name
       value: Enemy_Bat_Green Variant
@@ -60,6 +100,34 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 295d542a793ebf74eb493705f6f91ffe, type: 3}
+    - target: {fileID: 5298778651286794582, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.41279763
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729427421788788374, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0000029802318
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742880378154335419, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_Target.x
+      value: -7.8325653
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742880378154335419, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_Target.y
+      value: 3.789728
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909474600889420791, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00000023841855
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988856225971655601, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.28385678
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988856225971655601, guid: 189911e5a852bf7429550e8ee2828823, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.9588667
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

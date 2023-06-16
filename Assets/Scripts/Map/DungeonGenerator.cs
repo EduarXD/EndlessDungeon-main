@@ -10,12 +10,6 @@ public class DungeonGenerator : MonoBehaviour
     //Matrix for dungeon
     public int[,,] dungeonMap { protected set; get; }
 
-
-    void Awake()
-    {
-        Generate();
-    }
-
     public void Generate()
     {
         Debug.Log("Generating...");
@@ -50,7 +44,7 @@ public class DungeonGenerator : MonoBehaviour
 
     void CierraDungeon()
     {
-        for(int x = 0; x < dungeonWidth * 9 + 1; x++)
+        for (int x = 0; x < dungeonWidth * 9 + 1; x++)
         {
             dungeonMap[x, 0, 0] = 1;
             dungeonMap[x, dungeonHeight * 5, 0] = 1;
@@ -70,7 +64,7 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int y = posY * 5 + 1; y < (posY + 1) * 5; y++)
             {
-               
+
                 dungeonMap[x, y, 0] = roomTypes[randomIndex]; //Add room type
             }
         }
@@ -128,22 +122,22 @@ public class DungeonGenerator : MonoBehaviour
                         {
                             //Remove walls on the top side
                             bool connect = false;
-                            for(int a = 1; a < 9; a++)
+                            for (int a = 1; a < 9; a++)
                             {
-                                if(dungeonMap[x * 9 + a, y * 5, 0] == 0)
+                                if (dungeonMap[x * 9 + a, y * 5, 0] == 0)
                                 {
                                     connect = true;
-                                    
+
                                 }
                             }
                             if (connect == false)
                             {
                                 int door = Random.Range(1, 8);
                                 dungeonMap[x * 9 + door, y * 5, 0] = 0;
-                                dungeonMap[x * 9 + door+1, y * 5, 0] = 0;
+                                dungeonMap[x * 9 + door + 1, y * 5, 0] = 0;
                                 GenerateMovingPlatforms(x * 9 + door, y * 5, x);
                             }
-                            
+
 
                         }
                         else if (direction == 1 || direction == 3) //Horizontal connection
@@ -162,13 +156,13 @@ public class DungeonGenerator : MonoBehaviour
                             {
                                 int door = Random.Range(1, 4);
                                 dungeonMap[adjX * 9, adjY * 5 + door, 0] = 0;
-                                dungeonMap[adjX * 9, adjY * 5 + door+1, 0] = 0;
+                                dungeonMap[adjX * 9, adjY * 5 + door + 1, 0] = 0;
 
                             }
                         }
                         connections--;
                     }
-                }            
+                }
             }
         }
         CierraDungeon();//Close area dungeon
@@ -213,7 +207,7 @@ public class DungeonGenerator : MonoBehaviour
 
                         }
                         numPlatforms--;
-                    }                    
+                    }
                 }
             }
         }
@@ -259,10 +253,10 @@ public class DungeonGenerator : MonoBehaviour
 
                     //Obstacle in top or bottom
                     int obstacleType = obstacleY < (y * 5 + 4) ? Random.Range(1, 5) : 5;
-                    if(obstacleType == 5)
+                    if (obstacleType == 5)
                     {
                         //Other object in the possition
-                        if(dungeonMap[obstacleX, obstacleY, 5] != 1)
+                        if (dungeonMap[obstacleX, obstacleY, 5] != 1)
                         {
                             dungeonMap[obstacleX, obstacleY, 2] = obstacleType; //Set the obstacle
                             dungeonMap[obstacleX, obstacleY, 5] = 1; //Block the possition

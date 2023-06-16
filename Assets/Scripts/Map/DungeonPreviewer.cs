@@ -13,13 +13,13 @@ public class DungeonPreviewer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 #if UNITY_EDITOR
@@ -42,17 +42,6 @@ public class DungeonPreviewer : MonoBehaviour
                 if (grid)
                 {
                     Debug.Log("Recargando visualización");
-                    //Conectadas
-                    for (int x = 0; x < dungeon.dungeonWidth; x++)
-                    {
-                        for (int y = 0; y < dungeon.dungeonHeight; y++)
-                        {
-
-                                Gizmos.color = Color.black;
-
-                            Gizmos.DrawWireSphere(new Vector3(x * 9f + 4.5f, y * 5f + 2.5f, 1f), 1.5f);
-                        }
-                    }
                     //Salas
                     for (int x = 0; x < dungeon.dungeonWidth * 9 + 1; x++)
                     {
@@ -95,7 +84,7 @@ public class DungeonPreviewer : MonoBehaviour
                             }
                             if (dungeon.dungeonMap[x, y, 1] == 3)
                             {
-                                
+
                                 Gizmos.color = Color.yellow;
                                 Gizmos.DrawSphere(new Vector3(x, y, -2), 0.25f);
                                 lack = false;

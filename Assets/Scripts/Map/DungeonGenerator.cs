@@ -6,9 +6,11 @@ public class DungeonGenerator : MonoBehaviour
 {
     public int dungeonWidth;
     public int dungeonHeight;
+    public const int roomWidth = 8;
+    public const int roomHeight = 4;
 
     //Matrix for dungeon
-    public int[,,] dungeonMap { protected set; get; }
+    public int[,,] dungeonMap;
 
     public void Generate()
     {
@@ -252,8 +254,8 @@ public class DungeonGenerator : MonoBehaviour
                     int obstacleY = Random.Range(y * 5 + 1, y * 5 + 5); //Y Possition
 
                     //Obstacle in top or bottom
-                    int obstacleType = obstacleY < (y * 5 + 4) ? Random.Range(1, 5) : 5;
-                    if (obstacleType == 5)
+                    int obstacleType = obstacleY < (y * 5 + 4) ? Random.Range(1, 4) : 4;
+                    if (obstacleType == 4)
                     {
                         //Other object in the possition
                         if (dungeonMap[obstacleX, obstacleY, 5] != 1)
@@ -263,7 +265,7 @@ public class DungeonGenerator : MonoBehaviour
                         }
                         else
                         {
-                            i--;//If we cannot set the obstacle
+                            continue;//If we cannot set the obstacle
                         }
                     }
                     else
@@ -273,10 +275,11 @@ public class DungeonGenerator : MonoBehaviour
                         {
                             dungeonMap[obstacleX, y * 5 + 1, 2] = obstacleType; //Set the obstacle
                             dungeonMap[obstacleX, y * 5 + 1, 5] = 1; //Block the possition
+                            Debug.Log("He entrado");
                         }
                         else
                         {
-                            i--;//If we cannot set the obstacle
+                            continue;//If we cannot set the obstacle
                         }
                     }
                 }
@@ -286,19 +289,19 @@ public class DungeonGenerator : MonoBehaviour
 
     void GenerateEnemies()
     {
-        for (int x = 1; x < dungeonWidth; x++)
+        for (int x = 0; x < dungeonWidth; x++)
         {
-            for (int y = 1; y < dungeonHeight; y++)
+            for (int y = 0; y < dungeonHeight; y++)
             {
-                int numEnemies = Random.Range(0, 6); //Number of enemys
+                int numEnemies = Random.Range(0, x*y + 2); //Number of enemys
                 for (int i = 0; i < numEnemies; i++)
                 {
                     int enemyX = Random.Range(x * 9 + 1, x * 9 + 9); //X Possition
                     int enemyY = Random.Range(y * 5 + 1, y * 5 + 5); //Y Possition
 
                     //Enemy position top o bottom
-                    int enemyType = enemyY < (y * 5 + 4) ? Random.Range(1, 5) : Random.Range(5, 7);
-                    if (enemyType >= 5)
+                    int enemyType = enemyY < (y * 5 + 4) ? Random.Range(1, 4) : Random.Range(4, 5);
+                    if (enemyType < 4)
                     {
                         //Other object in the possition
                         if (dungeonMap[enemyX, y * 5 + 4, 5] != 1)
@@ -308,7 +311,7 @@ public class DungeonGenerator : MonoBehaviour
                         }
                         else
                         {
-                            i--;//If we cannot set the obstacle
+                            continue;//If we cannot set the obstacle
                         }
                     }
                     else
@@ -321,7 +324,7 @@ public class DungeonGenerator : MonoBehaviour
                         }
                         else
                         {
-                            i--;//If we cannot set the obstacle
+                            continue;//If we cannot set the obstacle
                         }
                     }
                 }
@@ -331,9 +334,9 @@ public class DungeonGenerator : MonoBehaviour
 
     void GeneratePowerUps()
     {
-        for (int x = 1; x < dungeonWidth; x++)
+        for (int x = 0; x < dungeonWidth; x++)
         {
-            for (int y = 1; y < dungeonHeight; y++)
+            for (int y = 0; y < dungeonHeight; y++)
             {
                 if (Random.value <= 0.5f) //Power up only 50% appear
                 {
@@ -347,7 +350,7 @@ public class DungeonGenerator : MonoBehaviour
                     }
                     else
                     {
-                        y--;//If we cannot set the obstacle
+                        continue;//If we cannot set the obstacle
                     }
                 }
             }

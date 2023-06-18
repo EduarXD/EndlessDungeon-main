@@ -31,7 +31,7 @@ public class DungeonPreviewer : MonoBehaviour
     public void PreView()
     {
         DebugExtended.GizmosSaveColor();
-        if (dungeon)
+        if (dungeon && this.enabled)
         {
             if (dungeon.dungeonMap == null)
             {
@@ -79,7 +79,7 @@ public class DungeonPreviewer : MonoBehaviour
                             if (dungeon.dungeonMap[x, y, 1] == 2)
                             {
                                 Gizmos.color = Color.white;
-                                Gizmos.DrawSphere(new Vector3(x, y, -2), 0.25f);
+                                Gizmos.DrawSphere(new Vector3(x, y, -2), 0.5f);
                                 lack = false;
                             }
                             if (dungeon.dungeonMap[x, y, 1] == 3)
@@ -102,7 +102,7 @@ public class DungeonPreviewer : MonoBehaviour
                         {
                             if (dungeon.dungeonMap[x, y, 2] > 0)
                             {
-                                if (dungeon.dungeonMap[x, y, 2] < 5)
+                                if (dungeon.dungeonMap[x, y, 2] < 4)
                                 {
                                     Gizmos.color = Color.black;
                                 }

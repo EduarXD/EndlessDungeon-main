@@ -78,7 +78,7 @@ MonoBehaviour:
   - {x: -0.07735777, y: -0.22327971, z: 0}
   m_ShapePathHash: 880540709
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43546
+  m_InstanceId: 27842
   m_LocalBounds:
     m_Center: {x: 0.009593964, y: 0.002947092, z: 0}
     m_Extent: {x: 0.25386047, y: 0.24171662, z: 0}
@@ -105,7 +105,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767940150009000308}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9108228, w: 0.4127976}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9108228, w: 0.41279763}
   m_LocalPosition: {x: -0.15445328, y: 0.15675664, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -137,7 +137,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343543274798498412}
-  m_LocalRotation: {x: 0, y: 0, z: -0.21063465, w: -0.9775649}
+  m_LocalRotation: {x: 0, y: 0, z: -0.21063419, w: -0.977565}
   m_LocalPosition: {x: 0.18906689, y: -0.15235496, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -298,7 +298,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2201936313391561489}
-  m_LocalRotation: {x: -0, y: -0, z: 0.00000020861623, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.00000023841855, w: 1}
   m_LocalPosition: {x: 0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -412,7 +412,7 @@ TargetJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 0
   m_Anchor: {x: 0, y: 0}
-  m_Target: {x: -4.2590384, y: 0.6508919}
+  m_Target: {x: -3.9130383, y: 3.4658918}
   m_AutoConfigureTarget: 1
   m_MaxForce: 10000
   m_DampingRatio: 0.25
@@ -471,7 +471,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3994627832783358444}
-  m_LocalRotation: {x: -0, y: -0, z: 0.0000012218952, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0000016391277, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -496,6 +496,7 @@ GameObject:
   - component: {fileID: 5845109022060516686}
   - component: {fileID: 5627646111020703728}
   - component: {fileID: 3559665058277660646}
+  - component: {fileID: -4648607918832328930}
   m_Layer: 6
   m_Name: Enemy_Bat_Blue
   m_TagString: Enemy
@@ -599,7 +600,31 @@ MonoBehaviour:
       m_Calls: []
   onKillStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2340982987313495449}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 5562554259546471840}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
   onKill:
     m_PersistentCalls:
       m_Calls: []
@@ -609,7 +634,7 @@ MonoBehaviour:
   damageDuration: 0.5
   invencibleColor: {r: 1, g: 0.5019608, b: 0.5019608, a: 1}
   deathType: 0
-  deathDuration: 0
+  deathDuration: 1
   checkpoint: {x: 0, y: 0, z: 0}
 --- !u!50 &5557795242210241395
 Rigidbody2D:
@@ -787,6 +812,102 @@ MonoBehaviour:
     showGizmo: 1
   - color: {r: 0, g: 1, b: 0, a: 1}
     showGizmo: 1
+--- !u!82 &-4648607918832328930
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067793170558984053}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 78d7058947fce9440b64a6f596df0549, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.016
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4280246563729712566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,7 +1122,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5237217319078294486}
-  m_LocalRotation: {x: 0, y: 0, z: 0.95886683, w: 0.28385642}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9588667, w: 0.28385678}
   m_LocalPosition: {x: -0.15861559, y: -0.18131423, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1092,9 +1213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnTrigger: 0
-  tag_ignore: 1
+  tag_ignore: 0
   tag_compare: Player
-  mask_ignore: 1
+  mask_ignore: 0
   mask_compare:
     serializedVersion: 2
     m_Bits: 8
@@ -1620,7 +1741,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8532204028417754488}
-  m_LocalRotation: {x: -0, y: -0, z: -0.000003367662, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0000029802318, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1734,7 +1855,7 @@ TargetJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 0
   m_Anchor: {x: 0, y: 0}
-  m_Target: {x: -5.7635655, y: 0.638728}
+  m_Target: {x: -5.4175653, y: 3.453728}
   m_AutoConfigureTarget: 1
   m_MaxForce: 10000
   m_DampingRatio: 0.25

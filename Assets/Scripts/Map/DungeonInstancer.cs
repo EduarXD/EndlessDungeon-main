@@ -11,6 +11,7 @@ public class DungeonInstancer : MonoBehaviour
     public int seed;
     public DungeonGenerator generator;
     public GridCamera cam;
+    public GameObject RoomPrefab;
     public GameObject generateMenu;
     public TMP_InputField size_x_input;
     public TMP_InputField size_y_input;
@@ -27,6 +28,7 @@ public class DungeonInstancer : MonoBehaviour
         generateProgress.SetActive(false);
         generateMenu.SetActive(true);
         white.alpha = 1.0f;
+        seed_input.text = Random.Range(0, int.MaxValue).ToString();
         Validate();
     }
 
@@ -52,7 +54,7 @@ public class DungeonInstancer : MonoBehaviour
     }
     IEnumerator Generate_Coroutine()
     {
-        generateProgress.SetActive(false);
+        generateProgress.SetActive(true);
         slider.maxValue = size.x * size.y + 1;
         generateMenu.SetActive(false);
         yield return null;
@@ -66,6 +68,7 @@ public class DungeonInstancer : MonoBehaviour
         {
             for (int y = 0; y < size.y; y++)
             {
+                InstantiateSala(new Vector2Int(x,y));
                 yield return null;
                 slider.value++;
             }
@@ -83,6 +86,11 @@ public class DungeonInstancer : MonoBehaviour
 
     public void InstantiateSala(Vector2Int pos)
     {
-
+        Vector2 position = pos;
+        position.x *= /*DungeonGenerator.roomWidth * */cam.size.x;
+        position.y *= /*DungeonGenerator.roomHeight * */cam.size.y;
+        Debug.Log(pos + ": " + position);
+        DungeonRoom room = Instantiate(RoomPrefab, position, Quaternion.identity).GetComponent<DungeonRoom>();
+        room.Spawn(pos, ref generator.dungeonMap);
     }
 }

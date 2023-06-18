@@ -22,8 +22,9 @@ public class LifeController : MonoBehaviour
     public float damageDuration;
     public Color invencibleColor;
 
-    public enum DEATHTYPE { Destroy, CheckPoint}
+    public enum DEATHTYPE { Destroy, CheckPoint, LoadScene }
     public DEATHTYPE deathType;
+    public string loadSceneName;
     public float deathDuration;
 
     public Vector3 checkpoint;
@@ -32,12 +33,12 @@ public class LifeController : MonoBehaviour
     {
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
-        if(sr == null)
+        if (sr == null)
             sr = GetComponent<SpriteRenderer>();
         checkpoint = transform.position;
     }
-    public void ModLife(int life) 
-    { 
+    public void ModLife(int life)
+    {
         lifes = Mathf.Clamp(lifes + life, 0, maxLifes);
     }
     public void ModMaxLife(int life)
@@ -52,7 +53,7 @@ public class LifeController : MonoBehaviour
         if (invencible && !ignoreInvencible)
             return;
         StartCoroutine(Invencible_Corutine());
-        if(rb != null)
+        if (rb != null)
         {
             rb.velocity = new Vector2(rb.velocity.x * -knockbackMultiply + knockbackAdd, pushup);
         }
@@ -88,6 +89,9 @@ public class LifeController : MonoBehaviour
                     rb.velocity = Vector2.zero;
                 transform.position = checkpoint;
                 lifes = maxLifes;
+                break;
+            case DEATHTYPE.LoadScene:
+                UnityEngine.SceneManagement.SceneManager.LoadScene(loadSceneName);
                 break;
             default:
                 DestroyImmediate(gameObject);

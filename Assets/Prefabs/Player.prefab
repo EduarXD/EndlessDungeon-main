@@ -2123,7 +2123,7 @@ MonoBehaviour:
     friction: 0
     transitionSpeed: 10
   dir: 1
-  jumpForce: 20
+  jumpForce: 22
   jumpTeleport: 0.1
   jumpRecover: 0.1
 --- !u!114 &4209220126518652545
@@ -2192,7 +2192,8 @@ MonoBehaviour:
   damageColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   damageDuration: 0.5
   invencibleColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
-  deathType: 1
+  deathType: 2
+  loadSceneName: MainMenu
   deathDuration: 1
   checkpoint: {x: 0, y: 0, z: 0}
 --- !u!1 &5944992078958867791

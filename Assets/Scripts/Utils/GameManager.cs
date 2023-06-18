@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
     public enum SCRIPTS { PlayerMovement, PlayerLifeController, UIController, GridCamera }
     public static Dictionary<SCRIPTS, MonoBehaviour> scripts = new Dictionary<SCRIPTS, MonoBehaviour>();
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        scripts = new Dictionary<SCRIPTS, MonoBehaviour>();
     }
 
     // Update is called once per frame

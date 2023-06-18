@@ -92,6 +92,7 @@ public class LifeController : MonoBehaviour
                 break;
             case DEATHTYPE.LoadScene:
                 UnityEngine.SceneManagement.SceneManager.LoadScene(loadSceneName);
+                lifes = 3;
                 break;
             default:
                 DestroyImmediate(gameObject);

@@ -88,6 +88,10 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpNext = Time.time + jumpRecover;
         }
+        if (Input.GetKey("escape"))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        }
     }
     private void FixedUpdate()
     {

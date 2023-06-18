@@ -18,7 +18,6 @@ public class TimeManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(this);
     }
 
     void LateUpdate()

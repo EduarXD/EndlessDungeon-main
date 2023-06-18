@@ -8,7 +8,8 @@ public class DungeonGenerator : MonoBehaviour
     public int dungeonHeight;
     public const int roomWidth = 8;
     public const int roomHeight = 4;
-
+    //Count Enemyes
+    public int enemies = 0;
     //Matrix for dungeon
     public int[,,] dungeonMap;
 
@@ -308,6 +309,7 @@ public class DungeonGenerator : MonoBehaviour
                         {
                             dungeonMap[enemyX, y * 5 + 4, 3] = enemyType; //Set the obstacle
                             dungeonMap[enemyX, y * 5 + 4, 5] = 1; //Block the possition
+                            enemies++;
                         }
                         else
                         {
@@ -321,6 +323,7 @@ public class DungeonGenerator : MonoBehaviour
                         {
                             dungeonMap[enemyX, y * 5 + 1, 3] = enemyType; //Set the obstacle
                             dungeonMap[enemyX, y * 5 + 1, 5] = 1; //Block the possition
+                            enemies++;
                         }
                         else
                         {
@@ -367,5 +370,14 @@ public class DungeonGenerator : MonoBehaviour
     public int[,,] GetDungeonMap()
     {
         return dungeonMap;
+    }
+
+    public void SetEnemies()
+    {
+        enemies--;
+    }
+    public int GetEnemies()
+    {
+        return enemies;
     }
 }
